@@ -90,11 +90,30 @@ public class RegisterDocumentControl1 {
         String format = file.getName().substring(file.getName().lastIndexOf(".") +
                                                  1).toLowerCase();      
         file.renameTo(new File("/EDMIS", session.getAttribute("CodigoID") + "." + format));
-        
-        file.delete();
         //Document doc = read.readDocument(checksum);
         //session.setAttribute("Document", doc);
         logger.debug("<<< End of RegisterDocumentControl.exists()***");
+    }
+    
+    public void deleteDoc(HttpSession session) throws IOException {
+        logger.debug(">>> Start of RegisterDocumentControl.deleteDoc()***");
+        //logger.info("File " + file.getName() + " - sha512: " + checksum +
+        //            " send by " + user.getLogin() +
+        //            " already exists on the system!");
+        logger.info("Arquivo alterado!!");
+        
+        String format = session.getAttribute("DocFormat").toString();
+                
+        File arquivo = new File("/EDMIS", session.getAttribute("CodigoID") + "." + format);
+        arquivo.delete();
+        Document doc = new Document();
+        doc.setId(session.getAttribute("CodigoID").toString());
+        DocumentWriter write = new DocumentWriter(user);
+        write.deleteDocument(doc);
+        
+        //Document doc = read.readDocument(checksum);
+        //session.setAttribute("Document", doc);
+        logger.debug("<<< End of RegisterDocumentControl.deleteDoc()***");
     }
 
     private static String basename(String filename) {

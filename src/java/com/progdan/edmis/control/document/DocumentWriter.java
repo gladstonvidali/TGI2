@@ -69,4 +69,12 @@ public class DocumentWriter {
         bd.executeUpdate(conn, sql);
         logger.debug("<<< End of DocumentWriter.updateDocument()***");
     }
+    
+    public void deleteDocument(Document doc) {
+        logger.debug(">>> Start of DocumentWriter.deleteDocument()***");
+        String sql = "Delete from Documents WHERE DocumentID='" + doc.getId() +
+                     "'";
+        bd.executeUpdate(conn, sql);
+        logger.debug("<<< End of DocumentWriter.deleteDocument()***");
+    }
 }

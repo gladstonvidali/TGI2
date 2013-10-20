@@ -80,6 +80,7 @@
                                     doc = read.readDocument(file);
                                     session.setAttribute("Document", doc);
                                     session.setAttribute("CodigoID", doc.getId());
+                                    session.setAttribute("DocFormat", doc.getFormat());
                                   }
                                 %> 
                                 </FONT> 
@@ -146,11 +147,20 @@
                                   <tr> 
                                     <td> <input type="submit" name="Submit" value="<%= labels.getString("register") %>"> </td> 
                                     <td> <input type="reset" name="Reset" value="<%= labels.getString("reset") %>"> </td> 
+                                    <td>
+                                          
+                                    </td> 
                                   </tr> 
                                 </table> 
                               </form> 
                               </FONT> 
                               </P> 
+                              <!--
+                              Botao EXCLUIR ---------------------------------------------------------------------------
+                              -->
+                              <form name="document" method="post" action="delete.jsp"> 
+                                            <input type="submit" name="Delete" value="Excluir">
+                                        </form>  
                               <TABLE cellSpacing=0 cellPadding=5 width="100%" border=0> 
                                 <TBODY> 
                                   <TR> 
