@@ -1,3 +1,4 @@
+<%@page import="java.nio.file.Files"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <%
   Locale currentLocale = request.getLocale();
@@ -20,6 +21,7 @@
     return;
   }
 %> 
+<%@page import="java.io.File"%> 
 <%@page import="java.util.*"%> 
 <%@page import="java.text.*"%> 
 <%@page import="com.progdan.edmis.model.user.User"%> 
@@ -77,6 +79,7 @@
                                     DocumentReader read = new DocumentReader(user);
                                     doc = read.readDocument(file);
                                     session.setAttribute("Document", doc);
+                                    session.setAttribute("CodigoID", doc.getId());
                                   }
                                 %> 
                                 </FONT> 
@@ -215,11 +218,28 @@
                                                   </tr> 
                                                 </form> 
                                               </table> 
+                                                      
                                               </FONT> </TD> 
                                           </tr> 
                                         </tbody> 
                                       </table></TD> 
                                   </TR> 
+                                  <!-- 
+                                  Area abaixo do Grupo de Documentos!!
+                                  
+                                  
+                                  -->
+                                   <tr>
+                                  <TD width="207" align="left" style="VERTICAL-ALIGN: top; WIDTH: 110px">
+                                  <jsp:include page="docupload_1.jsp" flush="true"/> </TD>
+                                  </tr>
+
+
+                                  <!-- 
+                                  Area abaixo da Lista de Documentos!!
+                                  
+                                  
+                                  -->
                                 </TBODY> 
                               </TABLE></TD> 
                           </tr> 
